@@ -1,2 +1,2 @@
-# Colour Your Loss
-A web application for generating a weight loss roadmap.
+# Colour Your Change
+A web application for generating a weight change and fitness roadmap.

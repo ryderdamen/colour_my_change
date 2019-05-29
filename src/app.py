@@ -1,7 +1,7 @@
 """The flask app responsible for serving the application"""
 from flask import Flask
 from roadmap_generator import generate_roadmap
-from image_generator import generate_image
+from backend import generate_image
 
 
 app = Flask(__name__)

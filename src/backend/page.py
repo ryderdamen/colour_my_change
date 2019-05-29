@@ -16,7 +16,10 @@ class Page(object):
     max_nodes_per_row = 5
     max_rows_per_page = 7
 
-    font_path = os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'assets/roboto_medium.ttf')
+    font_path = os.path.join(
+        os.path.abspath(os.path.dirname(os.path.dirname(__file__))),
+        'assets/roboto_medium.ttf'
+    )
     node_font = ImageFont.truetype(font_path, 45)
 
     node_diameter_pixels = 300
@@ -30,17 +33,46 @@ class Page(object):
         """Logic for class instantiation"""
         self.set_image_object()
         self.set_canvas_object()
+        self.add_logo()
 
-    def write_to_file(self, file_name='./page_1.png'):
+    def write_to_file(self, outfile):
         """Writes the page to a file"""
-        self.image.save(file_name, 'PNG')
+        self.image.save(outfile, 'PDF')
+    
+    def add_logo(self):
+        """Adds the colour_your_change logo to each page"""
+        logo_path = os.path.join(
+            os.path.abspath(os.path.dirname(os.path.dirname(__file__))),
+            'assets/small_logo.png'
+        )
+        logo = Image.open(logo_path, 'r')
+        offset = (
+            int(self.width_in_inches * self.pixels_per_inch) - 700,
+            int(self.height_in_inches * self.pixels_per_inch) - 200,
+        )
+        self.image.paste(logo, offset)
+        web_font = ImageFont.truetype(self.font_path, 16)
+        link_offset = (
+            int(self.width_in_inches * self.pixels_per_inch) - 680,
+            int(self.height_in_inches * self.pixels_per_inch) - 100,
+        )
+        self.canvas.text(
+            link_offset,
+            'Create another at https://colourmychange.ryder.rocks/',
+            font=web_font,
+            fill=(0, 0, 0)
+        )
 
     def get_in_pixels(self, dimension_in_inches):
         """Converts dimension in inches to pixels"""
         return dimension_in_inches * self.pixels_per_inch
+    
+    def get_max_nodes_per_page(self):
+        """REturns the maximum number of nodes per page"""
+        return int(self.max_nodes_per_row * self.max_rows_per_page)
 
     def set_image_object(self):
-        """Returns a new pillow image object"""
+        """Sets a new pillow image object"""
         image_height = int(self.height_in_inches * self.pixels_per_inch)
         image_width = int(self.width_in_inches * self.pixels_per_inch)
         image_size = image_width, image_height
@@ -49,6 +81,10 @@ class Page(object):
             size=image_size,
             color=(255, 255, 255)
         )
+    
+    def get_image_object(self):
+        """Returns the pillow image object for the class"""
+        return self.image
 
     def set_canvas_object(self):
         """Sets the canvas object"""
@@ -99,14 +135,14 @@ class Page(object):
             bound_box = self.build_bounding_box(column_counter, row_counter)
             self.canvas.ellipse(
                 (bound_box['x1'], bound_box['y1'], bound_box['x2'], bound_box['y2']),
-                outline=(0, 0, 0),
+                outline=(211, 211, 211),
                 width=node_width
             )
             self.canvas.text(
                 self.get_center_of_bounding_box(bound_box, node['text']),
                 node['text'],
                 font=self.node_font,
-                fill=(0, 0, 0)
+                fill=(100, 100, 100)
             )
             column_counter += 1
             if column_counter is self.max_nodes_per_row:
