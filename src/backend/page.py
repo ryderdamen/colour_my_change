@@ -18,7 +18,7 @@ class Page(object):
 
     font_path = os.path.join(
         os.path.abspath(os.path.dirname(os.path.dirname(__file__))),
-        'assets/roboto_medium.ttf'
+        'assets/fonts/roboto_medium.ttf'
     )
     node_font = ImageFont.truetype(font_path, 45)
 
@@ -43,7 +43,7 @@ class Page(object):
         """Adds the colour_your_change logo to each page"""
         logo_path = os.path.join(
             os.path.abspath(os.path.dirname(os.path.dirname(__file__))),
-            'assets/small_logo.png'
+            'assets/images/small_logo.png'
         )
         logo = Image.open(logo_path, 'r')
         offset = (
