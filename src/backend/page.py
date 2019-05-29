@@ -57,7 +57,7 @@ class Page(object):
         )
         self.canvas.text(
             link_offset,
-            'Create another at https://colourmychange.ryder.rocks/',
+            'Create another at https:/colouryourchange.ryder.rocks/',
             font=web_font,
             fill=(0, 0, 0)
         )

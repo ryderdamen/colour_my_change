@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: colour-your-change
+  labels:
+    app: colour-your-change
+spec:
+  ports:
+    - port: 80
+      targetPort: 5000
+  selector:
+    app: colour-your-change

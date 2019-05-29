@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: colour-your-change
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: colour-your-change
+    spec:
+      containers:
+      - name: colour-your-change
+        image: gcr.io/radical-sloth/colour-your-change:1.0.0
+        ports:
+        - containerPort: 5000

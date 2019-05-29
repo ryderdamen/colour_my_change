@@ -12,4 +12,9 @@ run:
 	docker run -p 5000:5000 -v $(PWD)/src/:/code/ $(IMAGE_NAME):$(VERSION)
 
 .PHONY: push
+push:
 	@docker push $(IMAGE_NAME):$(VERSION)
+
+.PHONY: deploy
+deploy:
+	@kubectl apply -f kubernetes/deployment.yaml -f kubernetes/service.yaml -f kubernetes/hpa.yaml
