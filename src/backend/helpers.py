@@ -1,4 +1,6 @@
 """Helper methods for generating pages"""
+import io
+
 from backend.node_generator import NodeGenerator
 from backend.page import Page
 from PIL import Image
@@ -10,7 +12,7 @@ def split_node_list_into_pages(node_list, max_nodes_per_page):
         yield node_list[i:i + max_nodes_per_page]
 
 
-def save_multipage_output(node_list, outfile):
+def build_pdf_output(node_list):
     """Renders a multipage output from a node list"""
     dummy_page = Page()
     max_nodes_per_page = dummy_page.get_max_nodes_per_page()
@@ -20,4 +22,7 @@ def save_multipage_output(node_list, outfile):
         page.create_nodes(page_node_list)
         rendered_pages.append(page.get_image_object())
         del page
-    rendered_pages[0].save(outfile, "PDF", save_all=True, append_images=rendered_pages[1:])
+    output_file = io.BytesIO()
+    rendered_pages[0].save(output_file, 'PDF', save_all=True, append_images=rendered_pages[1:])
+    output_file.seek(0)
+    return output_file

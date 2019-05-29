@@ -4,10 +4,9 @@
 class NodeGenerator(object):
     """Generates a node array"""
 
-    node_list = []
-
     def __init__(self, starting_weight, ending_weight):
         """Instantiation logic for the class"""
+        self.node_list = []
         if starting_weight > ending_weight:
             low = ending_weight
             high = starting_weight

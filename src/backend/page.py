@@ -26,11 +26,10 @@ class Page(object):
     node_padding_pixels = 105
     node_outline_width = 6
 
-    canvas = None
-    image = None
-
     def __init__(self):
         """Logic for class instantiation"""
+        self.canvas = None
+        self.image = None
         self.set_image_object()
         self.set_canvas_object()
         self.add_logo()
