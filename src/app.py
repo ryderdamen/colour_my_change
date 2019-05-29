@@ -8,8 +8,8 @@ from backend.node_generator import NodeGenerator
 app = Flask(__name__)
 
 
-MIN_INPUT_WEIGHT = 80
-MAX_INPUT_WEIGHT = 400
+MIN_INPUT_WEIGHT = 30
+MAX_INPUT_WEIGHT = 500
 
 
 @app.route('/')

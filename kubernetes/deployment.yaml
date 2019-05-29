@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
       - name: colour-your-change
-        image: gcr.io/radical-sloth/colour-your-change:1.0.0
+        image: gcr.io/radical-sloth/colour-your-change:1.0.1
         ports:
         - containerPort: 5000
