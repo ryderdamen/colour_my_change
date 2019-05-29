@@ -1,6 +1,6 @@
 """Helper methods for generating pages"""
-from node_generator import NodeGenerator
-from page import Page
+from backend.node_generator import NodeGenerator
+from backend.page import Page
 from PIL import Image
 
 
@@ -19,14 +19,5 @@ def save_multipage_output(node_list, outfile):
         page = Page()
         page.create_nodes(page_node_list)
         rendered_pages.append(page.get_image_object())
+        del page
     rendered_pages[0].save(outfile, "PDF", save_all=True, append_images=rendered_pages[1:])
-
-
-
-
-
-gen = NodeGenerator(300, 290)
-gen.add_goal_message(175, 'hello there, how is it going?')
-node_list = gen.get_node_list()
-
-save_multipage_output(node_list, './testing.pdf')

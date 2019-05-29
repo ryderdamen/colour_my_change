@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='img/small_logo.png') }}"
+            alt="Colour Your Change Logo">
+        <h1 hidden>Colour Your Change</h1>
+        <p class="lead">Colour Your Change is a simple web app for generating printable weight loss (or gain) progress
+            charts. </p>
+        <p class="lead">Colour in your chart <strong>every time you reach a milestone</strong>. Celebrate when you finish the whole
+            thing.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h4 class="">Your Goals</h4>
+            <p class="mb-4">First thing's first, your current and goal weight. Either lbs or kg work just fine.</p>
+            <form class="needs-validation" action="/chart/" method="POST">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="currentWeight">Current Weight</label>
+                        <input type="number" class="form-control" id="currentWeight" name="currentWeight"
+                            placeholder="220" min="{{MIN_INPUT_WEIGHT}}" max="{{MAX_INPUT_WEIGHT}}" required>
+                        <div class="invalid-feedback">
+                            Sorry, that's not valid.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="targetWeight">Target Weight</label>
+                        <input type="number" class="form-control" id="targetWeight" name="targetWeight"
+                            placeholder="180" min="{{MIN_INPUT_WEIGHT}}" max="{{MAX_INPUT_WEIGHT}}" required>
+                        <div class="invalid-feedback">
+                            Sorry, that's not valid.
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-dark btn-lg btn-block" type="submit">Generate My Chart!</button>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    {% endblock %}
