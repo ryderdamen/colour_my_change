@@ -1,0 +1,8 @@
+# Regular Stuff
+*.pyc
+**/.DS_Store
+**/__pycache__
+/env
+/venv
+
+# Project Stuff
