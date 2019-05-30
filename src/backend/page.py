@@ -38,6 +38,34 @@ class Page(object):
         """Writes the page to a file"""
         self.image.save(outfile, 'PDF')
     
+    def add_next_node_arrow(self, current_node_bounding_box):
+        """Adds a next node arrow to the node to the right"""
+        node_x, node_y = self.get_center_of_bounding_box(current_node_bounding_box)
+        line_y = node_y
+        arrow_offset_in_pixels = 30
+        arrow_length_in_pixels = 40
+        line_x_start =  node_x + (self.node_diameter_pixels / 2) + arrow_offset_in_pixels
+        line_x_end = line_x_start + arrow_length_in_pixels
+        self.canvas.line(
+            (line_x_start, line_y, line_x_end, line_y),
+            fill=(211, 211, 211),
+            width=self.node_outline_width
+        )
+        triangle_height_pixels = 10
+        triangle_depth_pixels = 10
+        self.canvas.polygon(
+            [
+                (line_x_end, line_y),
+                (line_x_end - triangle_depth_pixels, line_y + triangle_height_pixels),
+                (line_x_end - triangle_depth_pixels, line_y - triangle_height_pixels)
+            ],
+            fill=(211, 211, 211)
+        )
+    
+    def add_next_node_arrow_new_row(self, current_node_bounding_box):
+        """Adds an arrow to the next row of nodes"""
+        pass
+    
     def add_logo(self):
         """Adds the colour_my_change logo to each page"""
         logo_path = os.path.join(
@@ -100,8 +128,14 @@ class Page(object):
                 * row_counter + self.get_in_pixels(self.margin_top_in_inches)
             ),
         }
+    
+    def get_center_of_bounding_box(self, bounding_box):
+        """Returns the absolute center of the bounding box"""
+        x = int(bounding_box['x1'] + (self.node_diameter_pixels / 2))
+        y = int(bounding_box['y1'] + (self.node_diameter_pixels / 2))
+        return (x, y)
 
-    def get_center_of_bounding_box(self, bounding_box, text):
+    def get_center_of_bounding_box_for_text(self, bounding_box, text):
         """Returns the center xy coordinates of the bounding box accounting for text"""
         text_size_width, text_size_height = self.canvas.textsize(text, font=self.node_font)
         x_remainder_padding = int((self.node_diameter_pixels - text_size_width) / 2)
@@ -114,25 +148,35 @@ class Page(object):
         """Dynamically creates nodes from the node array"""
         row_counter = 0
         column_counter = 0
-        for node in node_array:
+        node_array_length = len(node_array)
+        for index, node in enumerate(node_array):
             if row_counter is self.max_rows_per_page:
                 continue
             node_width = self.node_outline_width
             if 'message' in node:
                 node_width = node_width * 2
             bound_box = self.build_bounding_box(column_counter, row_counter)
+            # Add node basics
             self.canvas.ellipse(
                 (bound_box['x1'], bound_box['y1'], bound_box['x2'], bound_box['y2']),
                 outline=(211, 211, 211),
                 width=node_width
             )
             self.canvas.text(
-                self.get_center_of_bounding_box(bound_box, node['text']),
+                self.get_center_of_bounding_box_for_text(bound_box, node['text']),
                 node['text'],
                 font=self.node_font,
                 fill=(100, 100, 100)
             )
+
+            # Add Arrows
+            if column_counter is not (self.max_nodes_per_row - 1):
+                if index is not (node_array_length - 1):  # not the last node ever
+                    self.add_next_node_arrow(bound_box)
+
+            # Increment Logic
             column_counter += 1
             if column_counter is self.max_nodes_per_row:
                 row_counter += 1
                 column_counter = 0
+
