@@ -38,7 +38,7 @@ def render_chart():
     return send_file(
         pdf_bytes,
         as_attachment=True,
-        attachment_filename='colour-your-change.pdf',
+        attachment_filename='colour-my-change.pdf',
         mimetype='application/pdf'
     )
 

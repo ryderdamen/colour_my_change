@@ -1,5 +1,5 @@
-IMAGE_NAME=gcr.io/radical-sloth/colour-your-change
-VERSION=1.0.1
+IMAGE_NAME=gcr.io/radical-sloth/colour-my-change
+VERSION=1.0.2
 PWD = $(shell pwd)
 
 .PHONY: build

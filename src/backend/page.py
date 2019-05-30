@@ -39,28 +39,17 @@ class Page(object):
         self.image.save(outfile, 'PDF')
     
     def add_logo(self):
-        """Adds the colour_your_change logo to each page"""
+        """Adds the colour_my_change logo to each page"""
         logo_path = os.path.join(
             os.path.abspath(os.path.dirname(os.path.dirname(__file__))),
-            'assets/images/small_logo.png'
+            'assets/images/branding_badge.png'
         )
         logo = Image.open(logo_path, 'r')
         offset = (
-            int(self.width_in_inches * self.pixels_per_inch) - 700,
-            int(self.height_in_inches * self.pixels_per_inch) - 200,
+            int(self.width_in_inches * self.pixels_per_inch) - 780,
+            int(self.height_in_inches * self.pixels_per_inch) - 240,
         )
         self.image.paste(logo, offset)
-        web_font = ImageFont.truetype(self.font_path, 16)
-        link_offset = (
-            int(self.width_in_inches * self.pixels_per_inch) - 680,
-            int(self.height_in_inches * self.pixels_per_inch) - 100,
-        )
-        self.canvas.text(
-            link_offset,
-            'Create another at https:/colouryourchange.ryder.rocks/',
-            font=web_font,
-            fill=(0, 0, 0)
-        )
 
     def get_in_pixels(self, dimension_in_inches):
         """Converts dimension in inches to pixels"""

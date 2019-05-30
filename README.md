@@ -1,6 +1,6 @@
-![Colour Your Change Logo](/src/assets/images/logo_colour.png)
+![Colour My Change Logo](/src/assets/images/logo_colour.png)
 
-# Colour Your Change
+# Colour My Change
 A web application for generating a weight change and fitness roadmap.
 
 ## Project Planning
