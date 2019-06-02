@@ -7,7 +7,6 @@ A web application for generating a weight change and fitness roadmap.
 * kubernetes (manifests for deployment)
     * Manifests for deployment
 * src (source files for the app)
-    * assets (assets for the backend)
     * backend (generation logic for the PDFs)
     * static (static files to serve, like logos)
     * templates (HTML templates)

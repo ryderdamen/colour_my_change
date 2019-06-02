@@ -17,7 +17,7 @@ class Page(object):
     max_rows_per_page = 7
 
     font_path = os.path.join(
-        os.path.abspath(os.path.dirname(os.path.dirname(__file__))),
+        os.path.abspath(os.path.dirname(__file__)),
         'assets/fonts/roboto_medium.ttf'
     )
     node_font = ImageFont.truetype(font_path, 45)
@@ -69,7 +69,7 @@ class Page(object):
     def add_logo(self):
         """Adds the colour_my_change logo to each page"""
         logo_path = os.path.join(
-            os.path.abspath(os.path.dirname(os.path.dirname(__file__))),
+            os.path.abspath(os.path.dirname(__file__)),
             'assets/images/branding_badge.png'
         )
         logo = Image.open(logo_path, 'r')
