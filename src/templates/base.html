@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Colour My Change - Printable weight loss progress diagrams</title>
+    <meta name="description" content="Colour My Change is an app that lets you generate simple fitness progress charts. Enter your goals, print out the paper, and colour them in as you reach them.">
+
     <!-- Bootstrap Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/main.css" type="text/css">
@@ -13,6 +15,22 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/icons/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/icons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/icons/favicon-16x16.png') }}">
+
+    <!-- Social -->
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@ryderdamen">
+    <meta name="twitter:title" content="Colour My Change - Printable Weight Loss Charts">
+    <meta name="twitter:description" content="Colour My Change is an app that lets you generate simple fitness progress charts. Enter your goals, print out the paper, and colour them in as you reach them.">
+    <meta name="twitter:image" content="{{ url_for('static', filename='img/colour_my_change_social.jpg') }}">
+
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://colourmychange.radicalsloth.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Colour My Change - Printable Weight Loss Charts" />
+    <meta property="og:description" content="Colour My Change is an app that lets you generate simple fitness progress charts. Enter your goals, print out the paper, and colour them in as you reach them." />
+    <meta property="og:image" content="{{ url_for('static', filename='img/colour_my_change_social.jpg') }}" />
+
 
     <style>
         a, a:active, a:visited {
@@ -41,7 +59,7 @@
         <p class="mb-1">Created by <a href="https://twitter.com/ryderdamen" target="_blank" rel="noopener">Ryder Damen</a></p>
         <ul class="list-inline">
             <!-- <li class="list-inline-item"><a href="https://github.com/radicalsloth/colour_my_change" target="_blank" rel="noopener">Get the Code</a></li> -->
-            <!-- <li class="list-inline-item"><a href="https://ryderdamen.com/colour-my-change" target="_blank" rel="noopener">About The Project</a></li> -->
+            <li class="list-inline-item"><a href="https://ryderdamen.com/projects/colour-my-change/" target="_blank" rel="noopener">About The Project</a></li>
         </ul>
         <img height="20" width="20" src="{{ url_for('static', filename='img/k8.svg') }}" scale="0">
         <small>This site is built with Flask & Pillow, and runs on a Kubernetes cluster. Send me a message for the details.</small>
