@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: colour-my-change
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -14,10 +14,4 @@ spec:
         image: gcr.io/radical-sloth/colour-my-change:1.0.7
         ports:
         - containerPort: 5000
-        resources:
-          requests:
-            memory: "10Mi"
-            cpu: "10m"
-          limits:
-            memory: "25Mi"
-            cpu: "50m"
+
